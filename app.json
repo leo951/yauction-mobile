@@ -1,0 +1,12 @@
+{
+  "name": "y-auction",
+  "displayName": "y-auction",
+  "expo": {
+    "name": "y-auction",
+    "slug": "y-auction",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
