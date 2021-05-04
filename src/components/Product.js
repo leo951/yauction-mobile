@@ -1,28 +1,30 @@
-  
+
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Card } from './Card';
+import { NavigationContainer } from '@react-navigation/native';
 
-import {Card} from './Card';
 
-export function Product({product, onPress}) {
-  console.log('Je suis les data dans Products', product)
+const RootStack = createStackNavigator();
 
+export function Product({ product, navigation }) {
+  
   return (
-    <Card style={styles.card} onPress={onPress}>
+    <Card style={styles.card} onPress={() => navigation.navigate('Detail', {
+      id: product._id
+    })} >
       <Image
         style={styles.thumb}
         source={product.image}
       />
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{product.brand.title}</Text>
-        <Text style={styles.price}>{product.energy}</Text>
+        <Text style={styles.price}>{product.model.title}</Text>
         <Text style={styles.description}>{product.year}</Text>
-        <Text style={styles.price}>Le prix de depart : {product.startingPrice} €</Text>
-
-        <Text style={styles.description}>Fin de l'enchère : {product.auctionEndDate}</Text>
+        <Text style={styles.price}>{product.startingPrice} €</Text>
+        <Text style={styles.description}>Fin de l'enchère : {product.auctionEndDate.substring(0, 10)}</Text>
         <Text style={styles.description}>Nombre d'offre en cours : {product.offers.length}</Text>
-
-
       </View>
     </Card>
   );

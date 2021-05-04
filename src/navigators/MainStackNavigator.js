@@ -1,42 +1,25 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
 
-// import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 //importer des components
-import {ProductsListScreen} from '../Screens/ProductsListScreen'
-import {OffersScreen} from '../Screens/OffersScreen'
+import { ProductsListScreen } from '../Screens/ProductsListScreen'
+import { DetailScreen } from '../Screens/DetailScreen'
+import { LoginScreen } from '../Screens/LoginScreen'
+import { Route } from 'react-router';
 
 
 
 const Tab = createBottomTabNavigator();
-// const MainStack = createStackNavigator();
+const Stack = createStackNavigator();
 
-function MyTabs() {
-  return (
-    <Tab.Navigator independent={true}>
- 		<Tab.Screen name={'ProductsListScreen'} component={ProductsListScreen} />
- 		<Tab.Screen name={'OffersScreen'} component={OffersScreen} />
-    </Tab.Navigator>
-  );
-}
-
-export function MainStackNavigator() {
+export function MainStackNavigator({route}) {
 	return (
-	  <NavigationContainer independent={true}>
-		<MyTabs />
-	  </NavigationContainer>
+		<Stack.Navigator independent={true}>
+			<Stack.Screen name={'Voiture'} component={ProductsListScreen} initialParams={{ vehicle: route.params.vehicle }} />
+			<Stack.Screen name={'Detail'} component={DetailScreen} />
+		</Stack.Navigator>
 	);
-  }
-
-
-// export function MainStackNavigator() {
-
-// 	return (
-// 		<MainStack.Navigator>
-// 			<MainStack.Screen name={'ProductsListScreen'} component={ProductsListScreen} />
-// 		</MainStack.Navigator>
-// 	);
-// }
+}
